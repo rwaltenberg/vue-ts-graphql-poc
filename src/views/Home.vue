@@ -1,18 +1,26 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+<template lang="pug">
+  .home
+    pokedex
 </template>
+
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Pokedex from '../components/Pokedex.vue';
 
 export default Vue.extend({
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld,
+    Pokedex,
   },
 });
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    width: 95%;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+</style>
+
