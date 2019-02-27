@@ -31,3 +31,9 @@ export default Vue.extend({
         entry(v-for="poke of pokemons" :key="poke.number" :entry-data="poke")
 </template>
 
+<style lang="scss" scoped>
+.pokedex {
+    display: flex;
+    flex-wrap: wrap;
+}
+</style>
