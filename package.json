@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/graphql": "^14.0.7",
     "vue": "^2.6.6",
     "vue-apollo": "^3.0.0-beta.11",
     "vue-router": "^3.0.1",
