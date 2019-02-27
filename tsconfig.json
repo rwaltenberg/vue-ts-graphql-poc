@@ -13,7 +13,8 @@
     "types": [
       "webpack-env",
       "jest",
-      "graphql"
+      "graphql",
+      "lodash"
     ],
     "paths": {
       "@/*": [

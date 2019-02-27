@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@types/graphql": "^14.0.7",
+    "@types/lodash": "^4.14.121",
     "flexboxgrid": "^6.3.1",
+    "lodash": "^4.17.11",
     "vue": "^2.6.6",
     "vue-apollo": "^3.0.0-beta.11",
     "vue-router": "^3.0.1",
