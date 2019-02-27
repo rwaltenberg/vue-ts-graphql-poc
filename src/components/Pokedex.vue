@@ -9,11 +9,18 @@ export default Vue.extend({
     },
     data() {
         return {
-            pokemons: [{
-                number: '025',
-                name: 'pikachu',
-                types: ['eletric'],
-            }],
+            pokemons: [
+                {
+                    number: '001',
+                    name: 'bulbasour',
+                    types: ['grass', 'poison'],
+                },
+                {
+                    number: '025',
+                    name: 'pikachu',
+                    types: ['eletric'],
+                }
+            ],
         };
     },
 });
