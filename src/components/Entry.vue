@@ -18,8 +18,9 @@ export default Vue.extend({
 
 <template lang="pug">
     .entry
-        .image
-            img(:src="getImageUrl(entryData.number)")
+        .detail
+            .image
+                img(:src="getImageUrl(entryData.number)")
         .number
             | \#{{ entryData.number }}
         .name
@@ -45,7 +46,7 @@ export default Vue.extend({
         transform: translate3d(0, -3px, 0);
         box-shadow: 0 2px 10px 3px rgba(#000, .1);
 
-        .image {
+        .detail {
             background-color: #eaeaea;
 
             &:before {
@@ -61,7 +62,7 @@ export default Vue.extend({
     }
 }
 
-.image {
+.detail {
     background-color: #e0e0e0;
     background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(255, 255, 255, 0) 100%);
     border-radius: 5px 5px 0 0;
@@ -89,9 +90,18 @@ export default Vue.extend({
         width: 60%;
     }
 
+    .image {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+    }
+
     img {
         display: block;
+        left: 0;
         margin: 0 auto;
+        position: absolute;
+        top: 0;
         width: 100%;
     }
 }
