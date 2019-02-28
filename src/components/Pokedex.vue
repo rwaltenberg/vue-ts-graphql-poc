@@ -15,6 +15,7 @@ export default Vue.extend({
     apollo: {
         pokemons: gql`{
             pokemons(first: 151) {
+                id,
                 number,
                 name,
                 types,
@@ -46,8 +47,8 @@ export default Vue.extend({
 <template lang="pug">
     .pokedex
         entry(
+            :featured="featured === poke.number"
             v-for="poke of pokemons" :key="poke.number"
-            :class="{ featured: featured === poke.number }"
             :entry-data="poke" @click="toggleFeatured(poke.number)"
         )
 </template>

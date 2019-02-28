@@ -1,11 +1,84 @@
 <script lang="ts">
 import Vue from 'vue';
+import gql from 'graphql-tag';
 import { kebabCase } from 'lodash';
+import { Pokemon } from '../interfaces/Pokemon';
+
+interface DataObj {
+    pokemon: Pokemon;
+}
 
 export default Vue.extend({
     name: 'Entry',
     props: {
         entryData: Object,
+        featured: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data(): DataObj {
+        return {
+            pokemon: {},
+        };
+    },
+    watch: {
+        entryData: {
+            immediate: true,
+            handler(value) {
+                if (!value) {
+                    return;
+                }
+
+                this.$set(this, 'pokemon', Object.assign({}, this.pokemon, value));
+            },
+        },
+        featured: {
+            immediate: true,
+            handler(value) {
+                if (!value) {
+                    return;
+                }
+
+                const options = {
+                    query: gql`query getPokemonById ($entry_id: String) {
+                        pokemon(id: $entry_id) {
+                            maxHP,
+                            maxCP,
+                            attacks {
+                                fast {
+                                    name,
+                                    type,
+                                    damage
+                                },
+                                special {
+                                    name,
+                                    type,
+                                    damage
+                                }
+                            }
+                        }
+                    }`,
+                    variables: {
+                        entry_id: this.pokemon.id,
+                    },
+                };
+
+                this.$apollo.query(options)
+                .then(({ data: { pokemon } }) => {
+                    this.$set(this, 'pokemon', Object.assign({}, this.pokemon, value));
+                    // tslint:disable-next-line
+                    console.log(pokemon);
+                })
+                .catch((error) => {
+                    // tslint:disable-next-line
+                    console.error(error);
+                });
+            },
+        },
+    },
+    created() {
+        Object.assign(window, { apollo: this.$apollo });
     },
     methods: {
         getImageUrl(num: number): string {
@@ -17,7 +90,7 @@ export default Vue.extend({
 </script>
 
 <template lang="pug">
-    .entry(@click="$emit('click', $event)")
+    .entry(@click="$emit('click', $event)" :class="{ featured }")
         .front
             .detail
                 .image
