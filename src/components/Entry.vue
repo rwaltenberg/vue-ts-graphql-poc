@@ -67,11 +67,8 @@ export default Vue.extend({
                 this.$apollo.query(options)
                 .then(({ data: { pokemon } }) => {
                     this.$set(this, 'pokemon', Object.assign({}, this.pokemon, pokemon));
-                    // tslint:disable-next-line
-                    console.log(pokemon);
                 })
                 .catch((error) => {
-                    // tslint:disable-next-line
                     console.error(error);
                 });
             },
