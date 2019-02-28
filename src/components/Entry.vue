@@ -103,7 +103,7 @@ export default Vue.extend({
                 .type(v-for="t in entryData.types" :class="slugify(t)")
                     | {{ t }}
         .back
-            | FOOOOOO
+            .loading(v-if="!pokemon || pokemon.maxHP == undefined")
 </template>
 
 <style lang="scss" scoped>
@@ -367,5 +367,17 @@ export default Vue.extend({
         background-color: #4592c4;
         color: #fff
     }
+}
+
+.loading {
+    background-image: url('../assets/loading.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 </style>
