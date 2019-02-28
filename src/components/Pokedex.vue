@@ -58,7 +58,7 @@ export default Vue.extend({
     display: flex;
     flex-wrap: wrap;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 1085px) {
         justify-content: center;
     }
 }

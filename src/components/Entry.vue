@@ -145,15 +145,17 @@ export default Vue.extend({
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px 1px rgba(#000, .1);
+    box-sizing: border-box;
     cursor: pointer;
     margin: 10px;
     padding: 15px;
     position: relative;
     transition: all .3s ease-in-out;
     transform: translateZ(0);
+    min-width: 230px;
+    max-width: 270px;
     transform-style: preserve-3d;
-    width: calc(100% / 5 - 10px);
-    min-width: 170px;
+    flex: 1 1 calc(100% / 4 - 20px);
 
     &:hover {
         transform: translate3d(0, -3px, 0);
@@ -263,13 +265,14 @@ export default Vue.extend({
 .number {
     background-image: url('../assets/entry-notch.png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: bottom center;
+    background-size: 150px auto;
     font-family: Dosis, sans-serif;
     font-size: 24px;
     font-weight: bold;
-    height: 42px;
-    line-height: 50px;
-    margin-top: -42px;
+    height: 33px;
+    line-height: 40px;
+    margin-top: -33px;
     margin-bottom: 15px;
     text-align: center;
     text-indent: -5px;
@@ -419,6 +422,8 @@ export default Vue.extend({
 
 .details {
     font-size: 14px;
+    max-height: 100%;
+    overflow: hidden;
     overflow-y: auto;
 }
 
