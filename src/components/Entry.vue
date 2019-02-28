@@ -147,15 +147,12 @@ export default Vue.extend({
     box-shadow: 0 0 10px 1px rgba(#000, .1);
     box-sizing: border-box;
     cursor: pointer;
-    margin: 10px;
     padding: 15px;
     position: relative;
     transition: all .3s ease-in-out;
     transform: translateZ(0);
     min-width: 230px;
-    max-width: 270px;
     transform-style: preserve-3d;
-    flex: 1 1 calc(100% / 4 - 20px);
 
     &:hover {
         transform: translate3d(0, -3px, 0);

@@ -13,6 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  min-width: 245px;
 }
 
 .logo {
@@ -21,14 +22,14 @@
   background-repeat: no-repeat;
   background-size: contain;
   font-size: 0;
-  height: 254px;
+  height: 218px;
   margin: 0 auto 30px;
-  width: 640px;
+  width: 550px;
 
-  @media screen and (max-width: 700px) {
-    width: 95%;
+  @media screen and (max-width: 620px) {
+    width: 80%;
     height: 0;
-    padding-top: 37.7%;
+    padding-top: 31.75%;
   }
 }
 </style>
