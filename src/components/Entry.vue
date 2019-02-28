@@ -66,7 +66,7 @@ export default Vue.extend({
 
                 this.$apollo.query(options)
                 .then(({ data: { pokemon } }) => {
-                    this.$set(this, 'pokemon', Object.assign({}, this.pokemon, value));
+                    this.$set(this, 'pokemon', Object.assign({}, this.pokemon, pokemon));
                     // tslint:disable-next-line
                     console.log(pokemon);
                 })
@@ -76,9 +76,6 @@ export default Vue.extend({
                 });
             },
         },
-    },
-    created() {
-        Object.assign(window, { apollo: this.$apollo });
     },
     methods: {
         getImageUrl(num: number): string {
@@ -104,6 +101,43 @@ export default Vue.extend({
                     | {{ t }}
         .back
             .loading(v-if="!pokemon || pokemon.maxHP == undefined")
+            .details(v-else)
+                section.max-data
+                    .max-cell
+                        label Max HP
+                        span {{ pokemon.maxHP }}
+                    .max-cell
+                        label Max CP
+                        span {{ pokemon.maxCP }}
+                section.attacks.fast
+                    h3 Fast Attacks
+                    table.attack-table
+                        thead
+                            tr
+                                th Attack
+                                th Type
+                                th Power
+                        tbody
+                            tr(v-for="attack in pokemon.attacks.fast")
+                                td {{ attack.name }}
+                                td
+                                    span.type(:class="slugify(attack.type)") {{ attack.type }}
+                                td {{ attack.damage }}
+                section.attacks.special
+                    h3 Special Attacks
+                    table.attack-table
+                        thead
+                            tr
+                                th Attack
+                                th Type
+                                th Power
+                        tbody
+                            tr(v-for="attack in pokemon.attacks.special")
+                                td {{ attack.name }}
+                                td
+                                    span.type(:class="slugify(attack.type)") {{ attack.type }}
+                                td {{ attack.damage }}
+
 </template>
 
 <style lang="scss" scoped>
@@ -171,12 +205,14 @@ export default Vue.extend({
     .back {
         background-color: #e0e0e0;
         background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(#FFF, 0) 100%);
-        transform: translateZ(0) rotateY(180deg);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+        box-sizing: border-box;
         height: 100%;
+        left: 0;
+        padding: 15px;
+        position: absolute;
+        transform: translateZ(0) rotateY(180deg);
+        top: 0;
+        width: 100%;
     }
 }
 
@@ -278,7 +314,7 @@ export default Vue.extend({
         color: #fff
     }
 
-    &.eletric {
+    &.eletric, &.electric {
         background: linear-gradient(180deg, #eed535 50%, #eed535 50%);
         background-color: #eed535;
         color: #212121
@@ -380,4 +416,72 @@ export default Vue.extend({
     top: 0;
     width: 100%;
 }
+
+.details {
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+.max-data {
+    display: flex;
+    justify-content: space-between;
+
+    .max-cell {
+        flex: 0 0 calc(50% - 5px);
+        border: 1px solid #ddd;
+        background-color: #eee;
+        box-sizing: border-box;
+        padding: 5px;
+
+        label {
+            color: #888;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        span {
+            font-family: Dosis, sans-serif;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            font-size: 18px;
+        }
+    }
+}
+
+.attacks {
+    h3 {
+        font-family: Dosis, sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 15px 0 10px;
+    }
+
+    .attack-table {
+        width: 100%;
+
+        thead th:first-child {
+            text-align: left;
+        }
+
+        tbody {
+            td {
+                font-size: 13px;
+                padding: 1px 0;
+                text-align: center;
+
+                &:first-child {
+                    text-align: left;
+                }
+
+                .type {
+                    padding: 2px 4px 3px;
+                }
+            }
+        }
+    }
+}
+
 </style>
