@@ -100,20 +100,23 @@ export default Vue.extend({
     background-image: url('../assets/entry-notch.png');
     background-repeat: no-repeat;
     background-position: center center;
-    font-size: 20px;
+    font-family: Dosis, sans-serif;
+    font-size: 24px;
     font-weight: bold;
     height: 42px;
     line-height: 50px;
     margin-top: -42px;
     margin-bottom: 15px;
     text-align: center;
+    text-indent: -5px;
     position: relative;
 }
 
 .name {
-    font-size: 18px;
+    font-family: Dosis, sans-serif;
+    font-size: 22px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-transform: capitalize;
 }
 
@@ -124,9 +127,9 @@ export default Vue.extend({
 
 .type {
     border-radius: 5px;
-    padding: 3px 8px;
+    padding: 3px 8px 5px;
     margin: 0 2px;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1;
 
     &.bug {
