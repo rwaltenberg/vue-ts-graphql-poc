@@ -1,26 +1,25 @@
 <script lang="ts">
 import Vue from 'vue';
 import Entry from './Entry.vue';
+import gql from 'graphql-tag';
 
 export default Vue.extend({
     name: 'Pokedex',
     components: {
         Entry,
     },
+    apollo: {
+        pokemons: gql`{
+            pokemons(first: 151) {
+                number,
+                name,
+                types
+            }
+        }`
+    },
     data() {
         return {
-            pokemons: [
-                {
-                    number: '001',
-                    name: 'bulbasour',
-                    types: ['grass', 'poison'],
-                },
-                {
-                    number: '025',
-                    name: 'pikachu',
-                    types: ['eletric'],
-                }
-            ],
+            pokemons: [],
         };
     },
 });
