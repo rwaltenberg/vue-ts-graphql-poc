@@ -34,17 +34,60 @@ export default Vue.extend({
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px 1px rgba(#000, .1);
-    width: calc(100% / 4 - 10px);
+    cursor: pointer;
     margin: 10px;
     padding: 15px;
+    transition: all .3s ease-in-out;
+    transform: translateZ(0);
+    width: calc(100% / 5 - 10px);
+
+    &:hover {
+        transform: translate3d(0, -3px, 0);
+        box-shadow: 0 2px 10px 3px rgba(#000, .1);
+
+        .image {
+            background-color: #eaeaea;
+
+            &:before {
+                padding-top: 60%;
+                width: 60%;
+            }
+
+            &:after {
+                padding-top: 80%;
+                width: 80%;
+            }
+        }
+    }
 }
 
 .image {
-    background: #f2f2f2;
-    background: radial-gradient(ellipse at center, #fafafa 0%,#eee 100%);
+    background-color: #e0e0e0;
+    background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(255, 255, 255, 0) 100%);
     border-radius: 5px 5px 0 0;
-    padding: 20px 20px 62px;
     margin: -15px -15px;
+    overflow: hidden;
+    padding: 20px 20px 62px;
+    position: relative;
+    transition: all .3s ease-in-out;
+
+    &:before, &:after {
+        content: '';
+        background-color: rgba(#fff, .3);
+        height: 0;
+        left: 0;
+        padding-top: 50%;
+        position: absolute;
+        top: 0;
+        transition: all .3s ease-in-out;
+        transform: translate3d(-50%, -50%, 0) rotate(45deg);
+        width: 50%;
+    }
+
+    &:after {
+        padding-top: 60%;
+        width: 60%;
+    }
 
     img {
         display: block;
@@ -64,6 +107,7 @@ export default Vue.extend({
     margin-top: -42px;
     margin-bottom: 15px;
     text-align: center;
+    position: relative;
 }
 
 .name {
