@@ -17,17 +17,20 @@ export default Vue.extend({
 </script>
 
 <template lang="pug">
-    .entry
-        .detail
-            .image
-                img(:src="getImageUrl(entryData.number)")
-        .number
-            | \#{{ entryData.number }}
-        .name
-            | {{ entryData.name }}
-        .types
-            .type(v-for="t in entryData.types" :class="slugify(t)")
-                | {{ t }}
+    .entry(@click="$emit('click', $event)")
+        .front
+            .detail
+                .image
+                    img(:src="getImageUrl(entryData.number)")
+            .number
+                | \#{{ entryData.number }}
+            .name
+                | {{ entryData.name }}
+            .types
+                .type(v-for="t in entryData.types" :class="slugify(t)")
+                    | {{ t }}
+        .back
+            | FOOOOOO
 </template>
 
 <style lang="scss" scoped>
@@ -38,9 +41,12 @@ export default Vue.extend({
     cursor: pointer;
     margin: 10px;
     padding: 15px;
+    position: relative;
     transition: all .3s ease-in-out;
     transform: translateZ(0);
+    transform-style: preserve-3d;
     width: calc(100% / 5 - 10px);
+    min-width: 170px;
 
     &:hover {
         transform: translate3d(0, -3px, 0);
@@ -60,11 +66,50 @@ export default Vue.extend({
             }
         }
     }
+
+    &.featured {
+        transform: translateZ(0) rotateY(180deg);
+
+        &:hover {
+            background-color: #eaeaea;
+            box-shadow: 0 2px 10px 3px rgba(#000, .1);
+            transform: translate3d(0, -3px, 0) rotateY(180deg);
+        }
+
+        .detail {
+            background-color: #eaeaea;
+
+            &:before {
+                padding-top: 90%;
+                width: 90%;
+            }
+
+            &:after {
+                padding-top: 120%;
+                width: 120%;
+            }
+        }
+    }
+
+    .front, .back {
+        backface-visibility: hidden;
+    }
+
+    .back {
+        background-color: #e0e0e0;
+        background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(#FFF, 0) 100%);
+        transform: translateZ(0) rotateY(180deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .detail {
     background-color: #e0e0e0;
-    background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(255, 255, 255, 0) 100%);
+    background-image: radial-gradient(ellipse at center, #fafafa 0%, rgba(#FFF, 0) 100%);
     border-radius: 5px 5px 0 0;
     margin: -15px -15px;
     overflow: hidden;
