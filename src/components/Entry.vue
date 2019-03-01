@@ -69,6 +69,7 @@ export default Vue.extend({
                     this.$set(this, 'pokemon', Object.assign({}, this.pokemon, pokemon));
                 })
                 .catch((error) => {
+                    // tslint:disable-next-line
                     console.error(error);
                 });
             },
